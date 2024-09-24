@@ -1,0 +1,33 @@
+1. Modules protect their variables and functions from leaking
+2. when u try to access any functions from another Modules then 
+this issue will come  => ReferenceError: (whatever functions you try to access or variable)
+is not defined
+3. You can acces using desctructing or module.export
+4. The common or default behaviou of access other module we are using like module.export={sum,x}; this is default set by common js
+// commonjs Modules default used node js
+
+function cal(a, b) {
+  console.log(a+b)
+}
+module.exports={
+  cal
+}
+
+// accesing older way using commonjs
+
+const obj = require("./sum.js"); 
+
+5. But we can acces using ES Modules like this
+ // new to exporting
+
+ export function cal(a, b) {
+  console.log(a+b)
+}
+
+5.1 => import export => by default used in react angular
+
+// accesing new way way using ES module 
+import { cal } from "./sum.js";
+
+
+
