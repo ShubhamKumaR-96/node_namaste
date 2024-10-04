@@ -29,5 +29,16 @@ const obj = require("./sum.js");
 // accesing new way way using ES module 
 import { cal } from "./sum.js";
 
+// require("./path);
+
+// All the code of the module is wrapped inside a function(IIFE);
+// IIFE => Immediately Invoked function Expression
+
+Q=> why the variable are private in different module ?
+ans => IIFE and require(statement)
+   Wrapping code in IIFE
+
+Q=> How do you get access to module.export ?
+ans=> node js passes (module) as a parameter to the IIFE;
 
 

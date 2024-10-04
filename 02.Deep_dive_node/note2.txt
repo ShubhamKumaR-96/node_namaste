@@ -1,0 +1,10 @@
+// require('/path')
+
+1 => Resolving the module
+    -> ./localpath
+    -> ./json -> node:module
+2. => Loading the module
+     -> file context is loaded acc to file type
+3. => Wraps inside IIFE
+4. => Evaluation -> module.export
+5. => Caching         

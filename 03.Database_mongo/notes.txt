@@ -1,0 +1,40 @@
+# Notes
+
+find({}): This MongoDB query retrieves all documents from the collection (because an empty query object {} matches all documents).
+.toArray(): Converts the result into an array of documents.
+
+
+Example:
+const firstResult = await collection.find({}).toArray();
+This retrieves all documents in the collection and stores them in firstResult as an array.
+
+
+const lastDocument = await collection.find().sort({ _id: -1 }).limit(1).toArray();
+console.log("Last inserted document =>", lastDocument);
+
+Explanation:
+sort({ _id: -1 }): Sorts the documents by _id in descending order, meaning the most recently inserted document will appear first.
+limit(1): Restricts the result to only one document (the most recent one).
+toArray(): Converts the result into an array.
+
+
+// Two delete 
+
+const lastTwoDocuments = await collection.find().sort({ _id: -1 }).limit(2).toArray();
+console.log("Last two inserted documents =>", lastTwoDocuments);
+
+if (lastTwoDocuments.length === 2) {
+  // Option A: Delete using deleteMany()
+  const lastTwoIds = lastTwoDocuments.map(doc => doc._id);
+  const deleteData = await collection.deleteMany({ _id: { $in: lastTwoIds } });
+  console.log("Deleted documents =>", deleteData);
+
+} else {
+  console.log("Not enough documents to delete.");
+}
+
+Explanation:
+find().sort({ _id: -1 }).limit(2): Finds the last two inserted documents by sorting them in descending order based on _id and limiting the result to 2.
+deleteMany({ _id: { $in: lastTwoIds } }): Deletes multiple documents whose _id matches the array lastTwoIds.
+Option B: If you prefer to delete them one by one, you can use two deleteOne() calls.
+
