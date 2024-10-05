@@ -1,0 +1,32 @@
+What is callbacks ?
+Ans => A callbacks is a function that is passed to another function.
+
+let arr = [1, 2, 3, 4, 5];
+
+let x = arr.map(function procss(v, i) {
+  console.log(v, i);
+});
+
+console.log(x);
+arr.map() creates a new array by applying the callback function to each element of the arr.
+The function you passed as a callback to map() (function procss(v, i)) is logging the values but not returning anything.
+
+Why is x storing undefined?
+The map() function works by applying the callback function to each element and expects the callback to return a value for each element. 
+If no value is returned explicitly, JavaScript implicitly returns undefined. So, the result stored in x is an array of undefined values.
+
+Fix: Return a value in the callback
+To store meaningful values in x, you need to return a value from the callback function inside map():
+
+
+let arr = [1, 2, 3, 4, 5];
+
+let x = arr.map(function procss(v, i) {
+  console.log(v, i);  // Log the current value and index
+  return v * 2;  // Return the value (for example, double the value)
+});
+
+console.log(x); // Output: [2, 4, 6, 8, 10]
+Explanation:
+return v * 2: This returns the value for each element, and map() creates a new array with those returned values.
+Now, x will store the result of multiplying each element by 2, so the output of x will be [2, 4, 6, 8, 10].
